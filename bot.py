@@ -210,6 +210,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     game_round += 1
     await ask_question(update)
 
+# ---------------------------------------
+# Команда /start
+# ---------------------------------------
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "Бот запущен. Пиши: 'давай поиграем ботик'"
+    )
 
 # ---------------------------------------
 # Обработка кнопок
@@ -254,4 +261,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
