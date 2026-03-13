@@ -236,7 +236,7 @@ async def handle_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ---------------------------------------
 # Запуск
 # ---------------------------------------
-import asyncio  # пусть импорт останется вверху файла
+import asyncio  # убедись, что этот импорт есть вверху файла
 
 def main():
     loop = asyncio.new_event_loop()
@@ -244,12 +244,7 @@ def main():
 
     app = ApplicationBuilder().token(TOKEN).build()
 
-    from telegram.ext import CommandHandler
-
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Бот запущен. Пиши: 'давай поиграем ботик'")
-
-app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message))
     app.add_handler(CallbackQueryHandler(handle_button))
 
@@ -258,6 +253,3 @@ app.add_handler(CommandHandler("start", start))
 
 if __name__ == "__main__":
     main()
-
-
-
