@@ -1,5 +1,6 @@
 import logging
 import requests
+import asyncio
 from telegram import (
     Update,
     InlineKeyboardButton,
@@ -235,14 +236,18 @@ async def handle_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ---------------------------------------
 # Запуск
 # ---------------------------------------
-def main():
+import asyncio  # добавь этот импорт выше, если его нет
+
+async def main():
     app = ApplicationBuilder().token(TOKEN).build()
 
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message))
     app.add_handler(CallbackQueryHandler(handle_button))
 
-    app.run_polling()
+    await app.run_polling()
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
+
+
