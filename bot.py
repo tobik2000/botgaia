@@ -236,18 +236,21 @@ async def handle_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ---------------------------------------
 # Запуск
 # ---------------------------------------
-import asyncio  # добавь этот импорт выше, если его нет
+import asyncio  # пусть импорт останется вверху файла
 
-async def main():
+def main():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
     app = ApplicationBuilder().token(TOKEN).build()
 
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message))
     app.add_handler(CallbackQueryHandler(handle_button))
 
-    await app.run_polling()
+    app.run_polling()
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
 
 
