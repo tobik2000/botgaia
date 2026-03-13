@@ -14,6 +14,7 @@ from telegram.ext import (
     CallbackQueryHandler,
     filters
 )
+from telegram.ext import CommandHandler
 
 # ---------------------------------------
 # ВСТАВЬ СВОИ КЛЮЧИ СЮДА
@@ -253,3 +254,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
