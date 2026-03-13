@@ -244,6 +244,12 @@ def main():
 
     app = ApplicationBuilder().token(TOKEN).build()
 
+    from telegram.ext import CommandHandler
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Бот запущен. Пиши: 'давай поиграем ботик'")
+
+app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message))
     app.add_handler(CallbackQueryHandler(handle_button))
 
@@ -252,5 +258,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
